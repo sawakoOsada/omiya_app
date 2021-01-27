@@ -14,6 +14,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ransack'
+gem 'jp_prefecture'
+gem 'jquery-rails'
+gem 'active_hash'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
