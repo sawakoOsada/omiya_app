@@ -1,24 +1,46 @@
-# README
+# バージョン情報
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby 2.6.5  
+Ruby on Rails 5.2.3
 
-Things you may want to cover:
+# カタログ設計
 
-* Ruby version
+https://docs.google.com/spreadsheets/d/1N2HlIgkHMiNgRYY8P3m5_lY2muFx2L1BXsoSI6TCEIg/edit?usp=sharing
 
-* System dependencies
+# 機能一覧
 
-* Configuration
+* ログイン機能  
+ユーザー登録機能
+* 商品一覧表示機能  
+ソート機能  
+都道府県で検索
+* 商品購入機能  
+カート内編集機能  
+購入完了後メール送信
+* レビュー機能  
+星数で評価できる
 
-* Database creation
+# テーブル定義書
 
-* Database initialization
+https://docs.google.com/spreadsheets/d/1N2HlIgkHMiNgRYY8P3m5_lY2muFx2L1BXsoSI6TCEIg/edit?usp=sharing
 
-* How to run the test suite
+# ER図
 
-* Services (job queues, cache servers, search engines, etc.)
+https://docs.google.com/spreadsheets/d/1N2HlIgkHMiNgRYY8P3m5_lY2muFx2L1BXsoSI6TCEIg/edit?usp=sharing
 
-* Deployment instructions
+# 画面遷移図
 
-* ...
+https://docs.google.com/spreadsheets/d/1N2HlIgkHMiNgRYY8P3m5_lY2muFx2L1BXsoSI6TCEIg/edit?usp=sharing
+
+# ワイヤーフレーム
+
+https://docs.google.com/spreadsheets/d/1N2HlIgkHMiNgRYY8P3m5_lY2muFx2L1BXsoSI6TCEIg/edit?usp=sharing
+
+# 使用予定Gem
+
+carrierwave  
+ransack  
+stripe  
+device  
+jp_prefecture  
+kaminari
