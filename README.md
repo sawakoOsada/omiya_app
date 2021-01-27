@@ -41,6 +41,6 @@ https://docs.google.com/spreadsheets/d/1N2HlIgkHMiNgRYY8P3m5_lY2muFx2L1BXsoSI6TC
 carrierwave  
 ransack  
 stripe  
-device  
+devise  
 jp_prefecture  
 kaminari
