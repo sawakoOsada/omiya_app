@@ -3,6 +3,7 @@
     <% if review.id.present? %>
       <li>
         <div class="review_comment" id ="this_review_<%= review.id %>">
+          <p class="review_rate" data-score="<%= review.rate %>"></p>
           <p><%= review.comment %></p>
           <p><%= link_to "編集", edit_souvenir_review_path(souvenir, review), remote: true %></p>
         </div>
@@ -12,3 +13,13 @@
     <% end %>
   <% end %>
 </ul>
+<script>
+  $('.review_rate').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    half: true,
+    path: '/assets/'
+  });
+</script>
