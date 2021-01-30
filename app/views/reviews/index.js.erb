@@ -1,8 +1,4 @@
 $("#reviews_area").html("<%= j(render 'reviews/index', { reviews: @review.souvenir.reviews, souvenir: @review.souvenir }) %>");
 $("textarea").val('');
-// $('.review_rating').raty({
-//   score: 0,
-//   path: '/assets/'
-// });
-$('.review_rating').reset();
+$('.review_rating').data('raty').cancel(true);
 $("#notice").html("<%= j flash[:notice] %>");
