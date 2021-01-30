@@ -1,3 +1,8 @@
 <%= @souvenir.name %>
 <%= @souvenir.price %>
 <%= @souvenir.prefecture.name %>
+<p>レビュー一覧</p>
+<div id="reviews_area">
+  <%= render partial: 'reviews/index', locals: { reviews: @reviews, souvenir: @souvenir } %>
+</div>
+<%= render partial: 'reviews/form', locals: { review: @review, souvenir: @souvenir } %>

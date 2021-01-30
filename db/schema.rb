@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_115704) do
+ActiveRecord::Schema.define(version: 2021_01_27_131628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "souvenir_id"
+    t.text "comment"
+    t.float "rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["souvenir_id"], name: "index_reviews_on_souvenir_id"
+  end
 
   create_table "souvenirs", force: :cascade do |t|
     t.string "name"
@@ -41,4 +50,5 @@ ActiveRecord::Schema.define(version: 2021_01_27_115704) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "reviews", "souvenirs"
 end

@@ -1,0 +1,3 @@
+$("#reviews_area").html("<%= j(render 'reviews/index', { reviews: @review.souvenir.reviews, souvenir: @review.souvenir }) %>");
+$("textarea").val('');
+$("#notice").html("<%= j flash[:notice] %>");
