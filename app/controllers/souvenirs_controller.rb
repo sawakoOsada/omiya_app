@@ -8,6 +8,14 @@ class SouvenirsController < ApplicationController
     @souvenir = Souvenir.find(params[:id])
     @reviews = @souvenir.reviews
     @review = @souvenir.reviews.build
-    @cart_item = current_cart.cart_items.find_by(souvenir_id: params[:souvenir_id])
+    item_in_cart
+  end
+  private
+  def item_in_cart
+    if current_cart.cart_items.find_by(souvenir_id: params[:id])
+      @cart_item = current_cart.cart_items.find_by(souvenir_id: params[:id])
+    else
+      @cart_item = current_cart.cart_items.new
+    end
   end
 end
