@@ -19,6 +19,8 @@ gem 'jquery-rails'
 gem 'active_hash'
 gem 'devise'
 gem 'devise-i18n'
+gem 'payjp'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
