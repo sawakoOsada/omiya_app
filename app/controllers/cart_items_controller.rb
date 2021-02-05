@@ -11,7 +11,11 @@ class CartItemsController < ApplicationController
 
   def update
     @cart_item = current_cart.cart_items.find_by(souvenir_id: params[:cart_item][:souvenir_id])
-    @cart_item.quantity += params[:cart_item][:quantity].to_i
+    if params[:cart_item][:change_quantity]
+      @cart_item.quantity = params[:cart_item][:quantity].to_i
+    else
+      @cart_item.quantity += params[:cart_item][:quantity].to_i
+    end
     if @cart_item.save
       redirect_to current_cart
     else
