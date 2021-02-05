@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  resources :carts, only: [:show]
+  resources :carts, only: [:show] do
+    member do
+      post :pay
+    end
+  end
 
   resources :cart_items, only: [:create, :update, :destroy]
 

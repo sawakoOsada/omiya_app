@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>OmiyaApp</title>
+    <script
+      src: "https://js.pay.jp/"
+      type: "text/javascript">
+    </script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -19,6 +23,8 @@
           <%= link_to '新規登録', new_user_registration_path %>
           <%= link_to 'ログイン', new_user_session_path %>
         <% end %>
+        <%= link_to 'かーと', cart_path(current_cart) %>
+        <%= link_to 'おみやげいちらん', souvenirs_path %>
       </nav>
     </header>
 
