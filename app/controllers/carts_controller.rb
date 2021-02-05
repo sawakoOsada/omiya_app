@@ -9,5 +9,6 @@ class CartsController < ApplicationController
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
+    current_cart.cart_items.delete_all
   end
 end

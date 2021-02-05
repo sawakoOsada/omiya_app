@@ -12,9 +12,7 @@
     <%= f.submit '変更' %>
   <% end %>
   <% @add_amount = item.souvenir.price * item.quantity %>
-  <% if @cart_items.count >= 2 %>
-    <% @amount += @add_amount %>
-  <% end %>
+  <% @amount += @add_amount %>
 <% end %>
 合計：<%= @amount %>円
 <%= form_with local: true, url: pay_cart_path do |form| %>
