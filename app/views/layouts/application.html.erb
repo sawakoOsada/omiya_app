@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OmiyaApp</title>
+    <title>おみやげ横丁</title>
+    <%= favicon_link_tag('favicon.ico') %>
     <script
       src: "https://js.pay.jp/"
       type: "text/javascript">
@@ -15,6 +16,7 @@
 
   <body>
     <header>
+      <img src="../assets/images/logo.png">
       <nav>
         <% if user_signed_in? %>
           <%= link_to 'おみやげいちらん', souvenirs_path %>
