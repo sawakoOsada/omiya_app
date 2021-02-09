@@ -16,10 +16,11 @@ ActiveRecord::Schema.define(version: 2021_02_06_042905) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string "name"
-    t.integer "zip"
-    t.integer "prefecture_id"
-    t.string "city"
+    t.string "name", null: false
+    t.integer "zip", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "town", null: false
     t.string "building"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -44,17 +45,19 @@ ActiveRecord::Schema.define(version: 2021_02_06_042905) do
 
   create_table "reviews", force: :cascade do |t|
     t.bigint "souvenir_id"
+    t.bigint "user_id"
     t.text "comment"
-    t.float "rate"
+    t.float "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["souvenir_id"], name: "index_reviews_on_souvenir_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "souvenirs", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "image"
-    t.integer "price"
+    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "prefecture_id"
@@ -81,4 +84,5 @@ ActiveRecord::Schema.define(version: 2021_02_06_042905) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "souvenirs"
   add_foreign_key "reviews", "souvenirs"
+  add_foreign_key "reviews", "users"
 end
