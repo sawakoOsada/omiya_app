@@ -1,4 +1,5 @@
 $("#reviews_area").html("<%= j(render 'reviews/index', { reviews: @review.souvenir.reviews, souvenir: @review.souvenir }) %>");
+$("#error_explanation").html("<%= j(render 'reviews/error', { review: @review }) %>");
 $("textarea").val('');
 $('.review_rating').data('raty').cancel(true);
 $("#notice").html("<%= j flash[:notice] %>");

@@ -2,6 +2,9 @@
 <%= @souvenir.price %>
 <%= @souvenir.prefecture.name %>
 <p>レビュー一覧</p>
+<div id="error_explanation">
+  <%= render partial: 'reviews/error', locals: { review: @review } %>
+</div>
 <div id="reviews_area">
   <%= render partial: 'reviews/index', locals: { reviews: @reviews, souvenir: @souvenir } %>
 </div>

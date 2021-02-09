@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
       if @review.save
         format.js { render :index }
       else
-        format.html { redirect_to souvenir_path(@souvenir), notice: '投稿できませんでした' }
+        format.js { render :index }
       end
     end
   end
