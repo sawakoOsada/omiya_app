@@ -11,17 +11,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  def create
-    @user = User.new(sign_up_params)
-    binding.irb
-    if @user.save
-      set_flash_message! :notice, :signed_up
-       sign_up(resource_name, resource)
-       respond_with resource, location: after_sign_up_path_for(resource)
-     else
-       render :new
-     end
-  end
+  # def create
+  #   @user = User.new(sign_up_params)
+  #   if @user.save
+  #     set_flash_message! :notice, :signed_up
+  #      sign_up(resource_name, resource)
+  #      respond_with resource, location: after_sign_up_path_for(resource)
+  #    else
+  #      render :new
+  #    end
+  # end
 
   # GET /resource/edit
   # def edit
@@ -66,9 +65,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def　configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:address_attributes => [:user_id, :name, :zip, :prefecture_id, :building, :_destroy, :id]])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(
+      :account_update,
+      keys: [
+        addresses_attributes: [
+          :name,
+          :zip,
+          :prefecture_id,
+          :city,
+          :building,
+          :_destroy,
+          :id
+        ]
+      ]
+    )
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
