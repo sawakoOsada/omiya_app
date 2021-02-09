@@ -10,6 +10,7 @@ class SouvenirsController < ApplicationController
     @review = @souvenir.reviews.build
     item_in_cart
   end
+
   private
   def item_in_cart
     if current_cart.cart_items.find_by(souvenir_id: params[:id])

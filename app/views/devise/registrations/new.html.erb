@@ -21,6 +21,34 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+<%= f.fields_for :addresses do |address| %>
+<p>↓なくてもいいよ</p>
+  <p>住所</p>
+  <div class="field">
+    <%= address.label :氏名 %>
+    <%= address.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= address.label :郵便番号 %>
+    <%= address.text_field :zip %>
+  </div>
+
+  <div class="field">
+    <%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, :include_blank => '' %>
+  </div>
+
+  <div class="field">
+    <%= address.label :市町村 %>
+    <%= address.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= address.label :建物名 %>
+    <%= address.text_field :building %>
+  </div>
+<% end %>
+
   <div class="actions">
     <%= f.submit t('.sign_up') %>
   </div>
