@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      address: 住所
+      souvenir: お土産
+      cart: カート
+      cart_item: カート内商品
+      review: レビュー
+    attributes:
+      souvenir:
+        name: タイトル
+        image: 内容
+        price: 価格
+        prefecture_id: 販売している県
+      address:
+        name: 氏名
+        zip: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        building: 建物名
+      review:
+        rate: 評価
+        comment: コメント
+      cart_item:
+        quantity: 数量
