@@ -15,20 +15,27 @@
   </head>
 
   <body>
-    <header>
+    <nav>
       <!-- <img src="../images/logo.png"> -->
-      <nav>
-        <% if user_signed_in? %>
-        <%= link_to '新規登録', edit_user_registration_path(current_user.id) %>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to '新規登録', new_user_registration_path %>
-          <%= link_to 'ログイン', new_user_session_path %>
-        <% end %>
-        <%= link_to 'かーと', cart_path(current_cart) %>
-        <%= link_to 'おみやげいちらん', souvenirs_path %>
-      </nav>
-    </header>
+      <div class="uk-width-1-3">
+        <ul class="uk-nav-primary uk-nav-parent-icon" uk-nav>
+            <li class="uk-active"><a href="#">Active</a></li>
+            <li class="uk-parent">
+              <a href="#">おみやげいちらん</a>
+              <ul class="uk-nav-sub">
+                <li><%= link_to 'おみやげいちらん', souvenirs_path %></li>
+              </ul>
+            </li>
+            <% if user_signed_in? %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to '新規登録', new_user_registration_path %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <% end %>
+            <li><%= link_to 'かーと', cart_path(current_cart) %></li>
+        </ul>
+      </div>
+    </nav>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>

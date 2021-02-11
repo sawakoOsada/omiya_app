@@ -20,6 +20,8 @@ gem 'active_hash'
 gem 'devise'
 gem 'devise-i18n'
 gem 'payjp'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -44,7 +46,7 @@ end
 group :test do
   gem 'capybara', '>= 3.34.0'
   gem 'webdrivers'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

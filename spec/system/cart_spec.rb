@@ -1,5 +1,4 @@
-# require 'rails_helper'
-require 'capybara/rspec'
+require 'rails_helper'
 RSpec.describe 'カート管理機能', type: :system do
   # let!(:user) {FactoryBot.create(:user)}
   let!(:souvenir) {FactoryBot.create(:souvenir)}
@@ -37,7 +36,7 @@ RSpec.describe 'カート管理機能', type: :system do
     context '別のページに遷移した場合' do
       it 'カート内情報が保持される' do
         # cart_in
-        visit current_cart
+        visit current_cart_path
         expect(page).to have_content 'souvenir_sample1'
       end
     end
@@ -66,7 +65,7 @@ RSpec.describe 'カート管理機能', type: :system do
 
     context 'カート内に商品がない場合' do
       it 'カート内に商品がないと表示される' do
-        visit current_cart
+        visit current_cart_path
         expect(page).to have_content 'ないよ'
       end
     end
