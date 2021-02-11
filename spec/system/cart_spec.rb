@@ -1,5 +1,5 @@
 # require 'rails_helper'
-
+require 'capybara/rspec'
 RSpec.describe 'カート管理機能', type: :system do
   # let!(:user) {FactoryBot.create(:user)}
   let!(:souvenir) {FactoryBot.create(:souvenir)}
