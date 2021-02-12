@@ -23,9 +23,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @address = current_user.addresses.build
+  end
 
   # PUT /resource
   # def update
@@ -58,6 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :zip,
           :prefecture_id,
           :city,
+          :town,
           :building
         ]
       ]
@@ -74,6 +75,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :zip,
           :prefecture_id,
           :city,
+          :town,
           :building,
           :_destroy,
           :id

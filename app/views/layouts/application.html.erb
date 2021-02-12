@@ -28,7 +28,11 @@
     <div class="uk-navbar-right">
 
            <ul class="uk-navbar-nav">
-
+             <% if user_signed_in? %>
+             <li><%= link_to 'ユーザー情報変更', edit_user_registration_path %></li>
+             <% else %>
+             <li><%= link_to '新規登録', new_user_registration_path %></li>
+             <% end %>
 
                <li><%= link_to 'かーと', cart_path(current_cart) %></li>
            </ul>

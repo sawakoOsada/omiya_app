@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     member do
       post :pay
     end
+    collection do
+      post :confirm
+    end
   end
 
   resources :cart_items, only: [:create, :update, :destroy]

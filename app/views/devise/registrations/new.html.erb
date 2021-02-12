@@ -22,7 +22,7 @@
   </div>
 
 <%= f.fields_for :addresses do |address| %>
-<p>↓なくてもいいよ</p>
+<p>住所は後でも登録できるよ</p>
   <p>住所</p>
   <div class="field">
     <%= address.label :氏名 %>
@@ -41,6 +41,11 @@
   <div class="field">
     <%= address.label :市町村 %>
     <%= address.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= address.label :町名番地 %>
+    <%= address.text_field :town %>
   </div>
 
   <div class="field">
