@@ -1,6 +1,7 @@
 <% if @souvenir.nil? %>
   ないよ
 <% end %>
+<%= image_tag(@souvenir.image.url, :size => '100x100') %>
 <%= @souvenir.name %>
 <%= @souvenir.price %>
 <%= @souvenir.prefecture.name %>

@@ -2,6 +2,7 @@ class SouvenirsController < ApplicationController
   def index
     @q = Souvenir.ransack(params[:q])
     @souvenirs = @q.result(distinct: true)
+    @souvenirs = @souvenirs.page(params[:page]).per(10)
   end
 
   def show

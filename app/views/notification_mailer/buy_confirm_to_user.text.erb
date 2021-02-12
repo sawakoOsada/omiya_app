@@ -1,0 +1,14 @@
+<%= @user.addresses.name %> 様
+
+ご購入ありがとうございます。
+注文内容
+<% @amount = 0 %>
+<% @items.each do |item| %>
+  <%= item.souvenir.name %>
+  <%= item.souvenir.price %>
+  <%= item.souvenir.prefecture.name %>
+  <%= item.quantity %>個
+  <% @add_amount = item.souvenir.price * item.quantity %>
+  <% @amount += @add_amount %>
+<% end %>
+注文合計：￥<%= @amount %>

@@ -1,3 +1,7 @@
+<% if @cart_items.blank? %>
+  ないよ
+<% end %>
+
 <% @amount = 0 %>
 <% @cart_items.each do |item| %>
   <%= item.souvenir.name %>
@@ -15,12 +19,15 @@
   <% @amount += @add_amount %>
 <% end %>
 合計：<%= @amount %>円
-<%= form_with local: true, url: pay_cart_path do |form| %>
-  <%= form.hidden_field :amount, value: @amount %>
-  <script
-    type="text/javascript"
-    src="https://checkout.pay.jp"
-    class="payjp-button"
-    data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
-  </script>
+
+<% if @cart_items.present? %>
+  <%= form_with local: true, url: pay_cart_path do |form| %>
+    <%= form.hidden_field :amount, value: @amount %>
+    <script
+      type="text/javascript"
+      src="https://checkout.pay.jp"
+      class="payjp-button"
+      data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
+    </script>
+  <% end %>
 <% end %>

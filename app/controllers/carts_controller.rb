@@ -9,6 +9,7 @@ class CartsController < ApplicationController
       :card => params['payjp-token'],
       :currency => 'jpy'
     )
+    NotificationMailer.buy_confirm_to_user(current_user,current_cart.cart_items).deliver
     current_cart.cart_items.delete_all
   end
 end
