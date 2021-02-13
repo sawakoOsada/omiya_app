@@ -80,6 +80,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    database_rewinder (0.9.4)
     devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -304,6 +305,7 @@ DEPENDENCIES
   capybara (>= 3.34.0)
   carrierwave
   coffee-rails (~> 4.2)
+  database_rewinder
   devise
   devise-i18n
   dotenv-rails
@@ -325,7 +327,6 @@ DEPENDENCIES
   ransack
   rspec-rails (~> 3.8)
   sass-rails (~> 5.0)
-  selenium-webdriver
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)

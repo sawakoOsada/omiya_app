@@ -47,7 +47,7 @@ end
 group :test do
   gem 'capybara', '>= 3.34.0'
   gem 'webdrivers'
-  gem 'selenium-webdriver'
+  gem 'database_rewinder'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

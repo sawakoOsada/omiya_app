@@ -14,4 +14,4 @@
  *= require raty-js/lib/jquery.raty.css
  *= require_self
  */
- @import "uikit.min";
+ @import "uikit.min.css";
