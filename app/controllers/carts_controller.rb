@@ -13,6 +13,7 @@ class CartsController < ApplicationController
     else
       @cart_items = current_cart.cart_items
       @addresses = current_user.addresses
+      render :confirm
     end
   end
 
