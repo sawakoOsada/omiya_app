@@ -9,19 +9,13 @@ RSpec.describe 'カート管理機能', type: :system do
   describe '商品をカートに入れる機能' do
 
     context 'カートに入れるをクリックした場合' do
-      it 'カート内商品が表示される' do
-        visit new_user_session_path
-        fill_in 'user_email', with: "#{user.email}"
-        fill_in 'user_password', with: "#{user.password}"
-        click_button 'ログイン'
-        expect(page).to have_content '2個'
+      it '指定した商品と個数が表示される' do
         # cart_in
-        # expect(page).to have_content 'souvenir_sample1'
-      end
-      it '指定した個数でカートに入る' do
+        #cart_in(souvenir, 2)みたいにしたい
         visit souvenir_path(souvenir.id)
         fill_in 'souvenir_quantity', with: '2'
         click_on 'カートに入れる'
+        expect(page).to have_content 'souvenir_sample1'
         expect(page).to have_content '2個'
       end
 
@@ -34,14 +28,17 @@ RSpec.describe 'カート管理機能', type: :system do
       end
     end
 
-    context '既にカート内にある商品をカートに入れた場合' do
+    context '既にカート内に商品がある場合' do
       before do
         cart_in
       end
-      it '指定した個数が追加される' do
+      it '同じ商品は指定した個数が追加される' do
         cart_in
         expect(page).to have_content '2個'
       end
+      # it '違う商品は別途追加される' do
+      #
+      # end
     end
   end
 
@@ -72,12 +69,13 @@ RSpec.describe 'カート管理機能', type: :system do
       let!(:address) {FactoryBot.create(:address, user: user)}
       it '商品を購入できる' do
         login(user)
+        cart_in
         click_button '購入確認'
         fill_in 'payjp_cardNumber', with: '4242424242424242'
         fill_in 'payjp_cardExpiresMonth', with: '01'
         fill_in 'payjp_cardExpiresYear', with: '30'
         fill_in 'payjp_cardCvc', with: '111'
-        fill_in 'payjp_cardName', with: user.address.name
+        fill_in 'payjp_cardName', with: "#{address.name}"
         click_button 'カードで支払う'
         expect(page).to have_content '支払いが完了しました'
       end

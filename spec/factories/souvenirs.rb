@@ -4,7 +4,7 @@ FactoryBot.define do
     price { 100 }
     prefecture_id { 1 }
   end
-  factory :souvenir2 do
+  factory :souvenir2, class: Souvenir do
     name { "souvenir_sample2" }
     price { 200 }
     prefecture_id { 2 }
