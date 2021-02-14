@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.fdescribe 'ユーザーモデル機能', type: :model do
+RSpec.describe 'ユーザーモデル機能', type: :model do
 
   describe 'バリデーションのテスト' do
 
