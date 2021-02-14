@@ -19,14 +19,14 @@ RSpec.describe 'カート管理機能', type: :system do
         expect(page).to have_content '2個'
       end
 
-      context '別のページに遷移した場合' do
-        it 'カート内情報が保持される' do
-          cart_in
-          visit cart_path(cart.id)
-          expect(page).to have_content 'souvenir_sample1'
-        end
+    context '別のページに遷移した場合' do
+      it 'カート内情報が保持される' do
+        cart_in
+        visit cart_path(cart.id)
+        expect(page).to have_content 'souvenir_sample1'
       end
     end
+  end
 
     context '既にカート内に商品がある場合' do
       before do
@@ -64,11 +64,12 @@ RSpec.describe 'カート管理機能', type: :system do
   describe '商品購入機能' do
     before do
       cart_in
+      user.confirm
     end
     context '住所登録したユーザーでログインした場合' do
       let!(:address) {FactoryBot.create(:address, user: user)}
       it '商品を購入できる' do
-        login(user)
+        sign_in user
         cart_in
         click_button '購入確認'
         fill_in 'payjp_cardNumber', with: '4242424242424242'
@@ -90,7 +91,7 @@ RSpec.describe 'カート管理機能', type: :system do
 
     context 'ユーザーの住所が登録されていない場合' do
       it '住所登録が必要だと表示される' do
-        login(user)
+        sign_in user
         visit cart_path(cart.id)
         expect(page).to have_content '商品購入には住所登録が必要です'
       end

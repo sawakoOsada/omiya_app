@@ -69,7 +69,6 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseRewinder.clean
   end
-  
-  config.include LoginMacros
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include CartInMacros
 end

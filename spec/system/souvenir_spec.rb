@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.fdescribe '商品閲覧機能', type: :system do
+RSpec.describe '商品閲覧機能', type: :system do
 
   let!(:souvenir) {FactoryBot.create(:souvenir)}
   let!(:souvenir2) {FactoryBot.create(:souvenir2)}
