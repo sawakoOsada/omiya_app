@@ -72,11 +72,12 @@ RSpec.describe 'カート管理機能', type: :system do
         sign_in user
         cart_in
         click_button '購入確認'
+        click_button 'カードで支払う'
         fill_in 'payjp_cardNumber', with: '4242424242424242'
-        fill_in 'payjp_cardExpiresMonth', with: '01'
-        fill_in 'payjp_cardExpiresYear', with: '30'
-        fill_in 'payjp_cardCvc', with: '111'
-        fill_in 'payjp_cardName', with: "#{address.name}"
+        # fill_in 'payjp_cardExpiresMonth', with: '01'
+        # fill_in 'payjp_cardExpiresYear', with: '30'
+        # fill_in 'payjp_cardCvc', with: '111'
+        # fill_in 'payjp_cardName', with: "#{address.name}"
         click_button 'カードで支払う'
         expect(page).to have_content '支払いが完了しました'
       end
