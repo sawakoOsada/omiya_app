@@ -36,9 +36,9 @@ RSpec.describe 'カート管理機能', type: :system do
         cart_in
         expect(page).to have_content '2個'
       end
-      # it '違う商品は別途追加される' do
-      #
-      # end
+      it '違う商品は別途追加される' do
+
+      end
     end
   end
 
