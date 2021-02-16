@@ -15,3 +15,24 @@
  *= require_self
  */
  @import "uikit.min.css";
+
+.uk-navbar{
+  background-color: #6a425c !important;
+}
+.uk-navbar li a{
+  color: white !important;
+}
+.uk-offcanvas-bar{
+  background-color: #6a425c !important;
+}
+.container{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 5rem;
+}
+.uk-text-lead{
+  border-bottom: 3px dashed gray;
+}
+.uk-container{
+  padding-top: 1rem;
+}

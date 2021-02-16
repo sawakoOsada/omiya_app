@@ -1,52 +1,41 @@
-<button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example">地図で探す</button>
-
-<div id="modal-example" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">地図で探すぜ！！！！！！</h2>
-        <div id="map">
-          <%= render partial: 'souvenirs/map' %>
-        </div>
-        <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-primary" type="button">Save</button>
-        </p>
-    </div>
+<div class="search_field">
+  <%= search_form_for @q do |f| %>
+    <span uk-icon="search"></span>
+    <%= f.search_field :name_cont, placeholder: '商品名' %>
+    <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, :include_blank => '指定なし' %>
+    <%= f.submit %>
+  <% end %>
 </div>
-<%= search_form_for @q do |f| %>
-  <%= f.label :name_cont %>
-  <%= f.search_field :name_cont %>
-  <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, :include_blank => '指定なし' %>
-  <%= f.submit %>
-<% end %>
 
 <div class="uk-overflow-auto">
-    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
-        <thead>
-            <tr>
-                <th class="uk-table-shrink"></th>
-                <th class="uk-table-shrink">おなまえ</th>
-                <th class="uk-width-small">けん</th>
-                <th class="uk-table-shrink uk-text-nowrap">おねだん</th>
-            </tr>
-        </thead>
-        <tbody>
-          <% @souvenirs.each do |souvenir| %>
-            <tr>
-                <td class="uk-table-link">
-                  <%= link_to image_tag(souvenir.image.url, :size => '100x100'), souvenir_path(souvenir.id), class: "uk-link-reset" %>
-                </td>
-                <td class="uk-table-link">
-                  <%= link_to souvenir.name, souvenir_path(souvenir.id), class: "uk-link-reset" %>
-                </td>
-                <td class="uk-table-link">
-                    <a class="uk-link-reset" href=""><%= souvenir.prefecture.name %></a>
-                </td>
-                <td class="uk-table-link">
-                  <%= link_to "￥#{souvenir.price}", souvenir_path(souvenir.id), class: "uk-link-reset" %>
-                </td>
-            </tr>
-          <% end %>
-        </tbody>
-    </table>
+  <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+    <thead>
+      <tr>
+        <th class="uk-table-shrink"></th>
+        <th class="uk-width-small">商品名</th>
+        <th class="uk-table-shrink">販売地域</th>
+        <th class="uk-table-shrink uk-text-nowrap">価格</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @souvenirs.each do |souvenir| %>
+        <tr>
+          <td class="uk-table-link">
+            <%= link_to image_tag(souvenir.image.url, :size => '100x100'), souvenir_path(souvenir.id), class: "uk-link-reset" %>
+          </td>
+          <td class="uk-table-link">
+            <%= link_to souvenir.name, souvenir_path(souvenir.id), class: "uk-link-reset" %>
+          </td>
+          <td class="uk-table-link">
+            <a class="uk-link-reset" href=""><%= souvenir.prefecture.name %></a>
+          </td>
+          <td class="uk-table-link">
+            <%= link_to "￥#{souvenir.price}", souvenir_path(souvenir.id), class: "uk-link-reset" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+
 <%= paginate @souvenirs %>

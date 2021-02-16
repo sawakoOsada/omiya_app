@@ -4,7 +4,7 @@
   <%= item.souvenir.price %>
   <%= item.souvenir.prefecture.name %>
   <%= item.quantity %>個
-  <%= link_to 'やっぱいらない', cart_item_path(item.souvenir.id), method: :delete %>
+  <%= link_to 'やっぱいらない', cart_item_path(item.souvenir.id), method: :delete %>]
   <%= form_with(model: item, local: true) do |f| %>
     <%= f.hidden_field :souvenir_id, value: item.souvenir.id %>
     <%= f.hidden_field :change_quantity, value: 'change' %>
@@ -14,6 +14,7 @@
   <% @add_amount = item.souvenir.price * item.quantity %>
   <% @amount += @add_amount %>
 <% end %>
+
 <p>合計：<%= @amount %>円</p>
 
 <% if @cart_items.blank? %>

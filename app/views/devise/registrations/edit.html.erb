@@ -1,74 +1,78 @@
-<h2><%= t('.title', resource: resource.model_name.human) %></h2>
+<div class="uk-grid-divider" uk-grid>
+  <div class="uk-width-1-2"><br />
+    <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password" %>
+      </div>
+    </div>
+  <div class="uk-width-1-2">
+    <p>商品購入時に必要です</p>
+    <%= f.fields_for :addresses do |address| %>
+      <h2>住所</h2>
+      <div class="field">
+        <%= address.label :氏名 %><br />
+        <%= address.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= address.label :郵便番号 %><br />
+        <%= address.text_field :zip %>
+      </div>
+
+      <div class="field">
+        <%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, :include_blank => '都道府県' %>
+      </div>
+
+      <div class="field">
+        <%= address.label :市町村 %><br />
+        <%= address.text_field :city %>
+      </div>
+
+      <div class="field">
+        <%= address.label :町名番地 %><br />
+        <%= address.text_field :town %>
+      </div>
+
+      <div class="field">
+        <%= address.label :建物名 %><br />
+        <%= address.text_field :building %>
+      </div>
+    <% end %><br />
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <%= f.fields_for :addresses do |address| %>
-  <p>商品購入時に必要です</p>
-    <p>住所</p>
-    <div class="field">
-      <%= address.label :氏名 %>
-      <%= address.text_field :name %>
-    </div>
-
-    <div class="field">
-      <%= address.label :郵便番号 %>
-      <%= address.text_field :zip %>
-    </div>
-
-    <div class="field">
-      <%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, :include_blank => '' %>
-    </div>
-
-    <div class="field">
-      <%= address.label :市町村 %>
-      <%= address.text_field :city %>
-    </div>
-
-    <div class="field">
-      <%= address.label :町名番地 %>
-      <%= address.text_field :town %>
-    </div>
-
-    <div class="field">
-      <%= address.label :建物名 %>
-      <%= address.text_field :building %>
-    </div>
-  <% end %>
-
-  <div class="actions">
+</div>
+  <div class="actions uk-flex uk-flex-center">
     <%= f.submit t('.update') %>
   </div>
-<% end %>
-
+    <% end %>
+<hr class="uk-divider-icon">
 <h3><%= t('.cancel_my_account') %></h3>
 
 <p><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>

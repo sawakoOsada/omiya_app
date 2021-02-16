@@ -18,6 +18,7 @@ ja:
         zip: 郵便番号
         prefecture_id: 都道府県
         city: 市区町村
+        city: 町名番地
         building: 建物名
       review:
         rate: 評価

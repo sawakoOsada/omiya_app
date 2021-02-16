@@ -18,15 +18,15 @@ end
 #     rate: rand(1..5),
 #     comment: 'sample_review'
 #   )
-end
-20.times do |n|
-  Address.create!(
-    user_id: n+1,
-    name: 'sample_name',
-    zip: '1111111',
-    prefecture_id: n+1,
-    city: 'sample_city',
-    town: 'sample_town',
-    building: 'sample_building'
-  )
-end
+# end
+# 20.times do |n|
+#   Address.create!(
+#     user_id: n+1,
+#     name: 'sample_name',
+#     zip: '1111111',
+#     prefecture_id: n+1,
+#     city: 'sample_city',
+#     town: 'sample_town',
+#     building: 'sample_building'
+#   )
+# end
