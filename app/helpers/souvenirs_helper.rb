@@ -1,2 +1,0 @@
-module SouvenirsHelper
-end
