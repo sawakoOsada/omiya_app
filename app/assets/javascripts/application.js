@@ -13,7 +13,9 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery/dist/jquery.js
 //= require jquery3
+//= require jquery_ujs
 //= require uikit.min
 //= require uikit-icons.min
 //= require raty-js
