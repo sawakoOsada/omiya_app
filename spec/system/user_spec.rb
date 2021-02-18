@@ -58,6 +58,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       it 'アカウント削除できる' do
         visit edit_user_registration_path
         click_button 'アカウント削除'
+        page.driver.browser.switch_to.alert.accept
         page.accept_alert
         expect(page).to have_content 'アカウントを削除しました。'
       end

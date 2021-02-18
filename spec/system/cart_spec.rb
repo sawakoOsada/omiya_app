@@ -67,7 +67,7 @@ RSpec.describe 'カート管理機能', type: :system do
     end
     context '住所登録したユーザーでログインした場合' do
       let!(:address) {FactoryBot.create(:address, user: user)}
-      fit '商品を購入できる' do
+      it '商品を購入できる' do
         sign_in user
         visit cart_path(cart.id)
         click_button '購入確認'

@@ -14,7 +14,6 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
-//= require jquery_ujs
 //= require uikit.min
 //= require uikit-icons.min
 //= require jquery.raty.js

@@ -24,7 +24,7 @@ RSpec.describe 'レビュー管理機能', type: :system do
       it 'レビューの内容が変更される' do
         visit souvenir_path(souvenir.id)
         click_link '編集'
-        fill_in "review_comment_1", with: 'review_edited'
+        fill_in "review_comment_#{souvenir.id}", with: 'review_edited'
         click_button '更新する'
         sleep 1
         expect(page).to have_content 'review_edited'
