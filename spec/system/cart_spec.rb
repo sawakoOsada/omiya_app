@@ -13,7 +13,7 @@ RSpec.describe 'カート管理機能', type: :system do
       it '指定した商品と個数が表示される' do
         cart_in(souvenir, 2)
         expect(page).to have_content 'souvenir_sample1'
-        expect(page).to have_content '2個'
+        expect(page).to have_content '2'
       end
 
     context '別のページに遷移した場合' do
@@ -31,7 +31,7 @@ RSpec.describe 'カート管理機能', type: :system do
       end
       it '同じ商品は指定した個数が追加される' do
         cart_in(souvenir, 1)
-        expect(page).to have_content '2個'
+        expect(page).to have_content '2'
       end
       it '違う商品は別途追加される' do
         cart_in(souvenir2, 1)
@@ -48,7 +48,7 @@ RSpec.describe 'カート管理機能', type: :system do
         cart_in(souvenir, 1)
         find_by_id('cart_item_quantity').select '2'
         click_button '変更'
-        expect(page).to have_content '2個'
+        expect(page).to have_content '2'
       end
     end
 
@@ -67,7 +67,7 @@ RSpec.describe 'カート管理機能', type: :system do
     end
     context '住所登録したユーザーでログインした場合' do
       let!(:address) {FactoryBot.create(:address, user: user)}
-      it '商品を購入できる' do
+      fit '商品を購入できる' do
         sign_in user
         visit cart_path(cart.id)
         click_button '購入確認'

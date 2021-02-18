@@ -1,32 +1,48 @@
+<p class="uk-text-large uk-heading-bullet"><span>ショッピングカート</span></p>
+
 <% @amount = 0 %>
-<% @cart_items.each do |item| %>
-  <%= item.souvenir.name %>
-  <%= item.souvenir.price %>
-  <%= item.souvenir.prefecture.name %>
-  <%= item.quantity %>個
-  <%= link_to 'やっぱいらない', cart_item_path(item.souvenir.id), method: :delete %>]
-  <%= form_with(model: item, local: true) do |f| %>
-    <%= f.hidden_field :souvenir_id, value: item.souvenir.id %>
-    <%= f.hidden_field :change_quantity, value: 'change' %>
-    <%= f.select :quantity, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {include_blank: item.quantity} %>
-    <%= f.submit '変更' %>
+<table class="uk-table uk-table-divider">
+    <thead>
+        <tr>
+            <th class="uk-table-expand"></th>
+            <th class="uk-table-expand"></th>
+            <th class="uk-width-small"></th>
+            <th class="uk-width-small item_quantity"></th>
+            <th class="uk-width-small"></th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |item| %>
+        <tr>
+            <td><%= image_tag(item.souvenir.image.url, :size => '100x100') %></td>
+            <td class="uk-text-middle"><strong class="uk-text-bold "><%= link_to item.souvenir.name, souvenir_path(item.souvenir.id) %></strong></td>
+            <td class="uk-text-middle"><strong class="uk-text-bold">￥<%= item.souvenir.price %></strong></td>
+            <td class="uk-text-middle"><%= form_with(model: item, local: true) do |f| %>
+              <%= f.hidden_field :souvenir_id, value: item.souvenir.id %>
+              <%= f.hidden_field :change_quantity, value: 'change' %>
+              <%= f.select :quantity, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], include_blank: '個数' %>
+              <%= f.submit '変更' %></td>
+            <td class="uk-text-middle"><%= link_to '削除', cart_item_path(item.souvenir.id), method: :delete %></td>
+            <% end %>
+        </tr>
+        <% @add_amount = item.souvenir.price * item.quantity %>
+        <% @amount += @add_amount %>
+        <% end %>
+    </tbody>
+</table>
+
+<p class="uk-text-right">合計：<%= @amount %>円</p>
+
+<div class="uk-text-center">
+  <% if @cart_items.blank? %>
+    <p>商品を探しに行きましょう！</p>
+  <% elsif current_user.nil? %>
+    <p>商品購入には会員登録が必要です</p>
+  <% elsif current_user.addresses.blank? %>
+    <p>商品購入には住所登録が必要です</p>
+  <% else %>
+    <%= form_with(local: true ,url: confirm_carts_path ) do |form| %>
+      <%= form.submit  "購入確認" %>
+    <% end %>
   <% end %>
-  <% @add_amount = item.souvenir.price * item.quantity %>
-  <% @amount += @add_amount %>
-<% end %>
-
-<p>合計：<%= @amount %>円</p>
-
-<% if @cart_items.blank? %>
-  <p>商品を探しに行きましょう！</p>
-<% elsif current_user.nil? %>
-  <p>商品購入には会員登録が必要です</p>
-<% elsif current_user.addresses.blank? %>
-  <p>商品購入には住所登録が必要です</p>
-<% end %>
-
-<% if @cart_items.present? && current_user.present? && current_user.addresses.present? %>
-  <%= form_with(local: true ,url: confirm_carts_path ) do |form| %>
-    <%= form.submit  "購入確認" %>
-  <% end %>
-<% end %>
+</div>

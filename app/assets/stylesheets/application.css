@@ -36,3 +36,6 @@
 .uk-container{
   padding-top: 1rem;
 }
+.review_list{
+  list-style: none;
+}

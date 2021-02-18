@@ -10,9 +10,22 @@
     </div>
   <% end %>
   <div class="field">
+    <div class="review_rating_edit">
+      <label>評価</label><br>
+    </div>
+    <%= form.label :comment %><br>
     <%= form.text_area :comment, id: "review_comment_#{souvenir.id}" %>
   </div>
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+<script>
+  $('.review_rating_edit').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    half: true,
+    scoreName: 'review[rate]'
+  });
+</script>

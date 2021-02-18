@@ -2,7 +2,7 @@
   <%= search_form_for @q do |f| %>
     <span uk-icon="search"></span>
     <%= f.search_field :name_cont, placeholder: '商品名' %>
-    <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, :include_blank => '指定なし' %>
+    <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, :include_blank => '販売範囲' %>
     <%= f.submit %>
   <% end %>
 </div>
@@ -27,7 +27,7 @@
             <%= link_to souvenir.name, souvenir_path(souvenir.id), class: "uk-link-reset" %>
           </td>
           <td class="uk-table-link">
-            <a class="uk-link-reset" href=""><%= souvenir.prefecture.name %></a>
+            <%= link_to souvenir.prefecture.name, souvenir_path(souvenir.id), class: "uk-link-reset" %>
           </td>
           <td class="uk-table-link">
             <%= link_to "￥#{souvenir.price}", souvenir_path(souvenir.id), class: "uk-link-reset" %>

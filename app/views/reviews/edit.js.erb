@@ -1,2 +1,3 @@
 $("#this_review_<%= @review.id %>").replaceWith("<%= j render 'reviews/edit', souvenir: @souvenir, review: @review %>");
+$('.review_rating_edit').data('raty').score(<%= @review.rate %>);
 $("#notice").html("<%= j flash[:notice] %>");
