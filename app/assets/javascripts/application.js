@@ -17,5 +17,5 @@
 //= require jquery_ujs
 //= require uikit.min
 //= require uikit-icons.min
-//= require jquery.raty.js
+//= require raty-js
 //= require_tree .
