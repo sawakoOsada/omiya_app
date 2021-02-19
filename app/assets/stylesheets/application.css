@@ -39,3 +39,10 @@
 .review_list{
   list-style: none;
 }
+input::placeholder {
+  color: rgb(185, 185, 185);
+}
+.uk-label-danger{
+  font-size: 0.5rem;
+  margin-right: 0.5rem;
+}

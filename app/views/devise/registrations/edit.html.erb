@@ -27,40 +27,40 @@
       </div>
 
       <div class="field">
-        <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password" %>
-      </div>
+        <span class="uk-label uk-label-danger">必須</span><%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password" %><br />
+      </div><br />
 
     <p>商品購入時に必要です</p>
     <%= f.fields_for :addresses do |address| %>
       <h2>住所</h2>
       <div class="field">
-        <%= address.label :氏名 %><span class="uk-label uk-label-danger">必須</span><br />
-        <%= address.text_field :name %>
+        <span class="uk-label uk-label-danger">必須</span><%= address.label :氏名 %><br />
+        <%= address.text_field :name, placeholder: '例：山田太郎' %>
       </div>
 
       <div class="field">
-        <%= address.label :郵便番号 %><span class="uk-label uk-label-danger">必須</span><br />
-        <%= address.text_field :zip, id: 'form_zip' %>
+        <span class="uk-label uk-label-danger">必須</span><%= address.label :郵便番号 %><br />
+        <%= address.text_field :zip, placeholder: '例：1111111', id: 'form_zip' %>
       </div>
 
       <div class="field">
-        <%= address.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '都道府県', id: 'form_prefecture'  %><span class="uk-label uk-label-danger">必須</span>
+        <span class="uk-label uk-label-danger">必須</span><%= address.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '都道府県', id: 'form_prefecture'  %>
       </div>
 
       <div class="field">
-        <%= address.label :市町村 %><span class="uk-label uk-label-danger">必須</span><br />
-        <%= address.text_field :city, id: 'form_city'  %>
+        <span class="uk-label uk-label-danger">必須</span><%= address.label :市町村 %><br />
+        <%= address.text_field :city, placeholder: '例：武蔵野市', id: 'form_city'  %>
       </div>
 
       <div class="field">
-        <%= address.label :町名番地 %><span class="uk-label uk-label-danger">必須</span><br />
-        <%= address.text_field :town, id: 'form_town'  %>
+        <span class="uk-label uk-label-danger">必須</span><%= address.label :町名番地 %><br />
+        <%= address.text_field :town, placeholder: '例：吉祥寺本町1-9-8', id: 'form_town'  %>
       </div>
 
       <div class="field">
         <%= address.label :建物名 %><br />
-        <%= address.text_field :building %>
+        <%= address.text_field :building, placeholder: '例：なんとかビル' %>
       </div>
     <% end %><br />
 
@@ -79,6 +79,7 @@
 $('#form_zip').jpostal({
   postcode : ['#form_zip'],
   address : {
+  '#user_addresses_attributes_0_prefecture_id' : '%3',
   '#form_city'          : '%4',
   '#form_town'          : '%5'
             }
