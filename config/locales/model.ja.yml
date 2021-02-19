@@ -10,15 +10,15 @@ ja:
     attributes:
       souvenir:
         name: タイトル
+        prefecture_id: 都道府県
         image: 内容
         price: 価格
-        prefecture_id: 販売している県
-      address:
+      addresses:
         name: 氏名
         zip: 郵便番号
         prefecture_id: 都道府県
         city: 市区町村
-        city: 町名番地
+        town: 町名番地
         building: 建物名
       review:
         rate: 評価

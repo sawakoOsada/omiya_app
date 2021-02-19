@@ -16,7 +16,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'ransack'
 gem 'jp_prefecture'
 gem 'jquery-rails'
-gem 'active_hash'
 gem 'devise'
 gem 'devise-i18n'
 gem 'payjp'

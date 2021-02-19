@@ -17,4 +17,5 @@
 //= require uikit.min
 //= require uikit-icons.min
 //= require jquery.raty.js
+//= require jquery.jpostal.js
 //= require_tree .

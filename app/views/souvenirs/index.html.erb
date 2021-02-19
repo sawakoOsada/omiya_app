@@ -2,7 +2,7 @@
   <%= search_form_for @q do |f| %>
     <span uk-icon="search"></span>
     <%= f.search_field :name_cont, placeholder: '商品名' %>
-    <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, :include_blank => '販売範囲' %>
+    <%= f.collection_select :prefecture_id_eq, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '販売範囲' %>
     <%= f.submit %>
   <% end %>
 </div>

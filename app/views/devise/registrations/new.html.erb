@@ -3,7 +3,7 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label :email %><span class="uk-label uk-label-danger">必須</span><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
@@ -11,12 +11,12 @@
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-      <% end %><br />
+      <% end %><span class="uk-label uk-label-danger">必須</span><br />
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %><span class="uk-label uk-label-danger">必須</span><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div><br />
 
@@ -25,27 +25,27 @@
       <h2>住所</h2>
 
       <div class="field">
-        <%= address.label :氏名 %><br />
+        <%= address.label :氏名 %><span class="uk-label uk-label-danger">必須</span><br />
         <%= address.text_field :name %>
       </div>
 
       <div class="field">
-        <%= address.label :郵便番号 %><br />
-        <%= address.text_field :zip %>
+        <%= address.label :郵便番号 %><span class="uk-label uk-label-danger">必須</span><br />
+        <%= address.text_field :zip, id: 'form_zip' %>
       </div>
 
       <div class="field">
-        <%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, :include_blank => '都道府県' %>
+        <%= address.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '都道府県', id: 'form_prefecture'  %><span class="uk-label uk-label-danger">必須</span>
       </div>
 
       <div class="field">
-        <%= address.label :市町村 %><br />
-        <%= address.text_field :city %>
+        <%= address.label :市町村 %><span class="uk-label uk-label-danger">必須</span><br />
+        <%= address.text_field :city, id: 'form_city'  %>
       </div>
 
       <div class="field">
-        <%= address.label :町名番地 %><br />
-        <%= address.text_field :town %>
+        <%= address.label :町名番地 %><span class="uk-label uk-label-danger">必須</span><br />
+        <%= address.text_field :town, id: 'form_town'  %>
       </div>
 
       <div class="field">
@@ -62,3 +62,14 @@
 <div class="uk-flex uk-flex-canter">
 <%= render "devise/shared/links" %>
 </div>
+
+<script>
+$('#form_zip').jpostal({
+  postcode : ['#form_zip'],
+  address : {
+  // '#form_prefecture'          : '%3',
+  '#form_city'          : '%4',
+  '#form_town'          : '%5'
+            }
+  });
+</script>

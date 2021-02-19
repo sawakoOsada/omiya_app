@@ -35,27 +35,27 @@
     <%= f.fields_for :addresses do |address| %>
       <h2>住所</h2>
       <div class="field">
-        <%= address.label :氏名 %><br />
+        <%= address.label :氏名 %><span class="uk-label uk-label-danger">必須</span><br />
         <%= address.text_field :name %>
       </div>
 
       <div class="field">
-        <%= address.label :郵便番号 %><br />
-        <%= address.text_field :zip %>
+        <%= address.label :郵便番号 %><span class="uk-label uk-label-danger">必須</span><br />
+        <%= address.text_field :zip, id: 'form_zip' %>
       </div>
 
       <div class="field">
-        <%= address.collection_select :prefecture_id, Prefecture.all, :id, :name, :include_blank => '都道府県' %>
+        <%= address.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '都道府県', id: 'form_prefecture'  %><span class="uk-label uk-label-danger">必須</span>
       </div>
 
       <div class="field">
-        <%= address.label :市町村 %><br />
-        <%= address.text_field :city %>
+        <%= address.label :市町村 %><span class="uk-label uk-label-danger">必須</span><br />
+        <%= address.text_field :city, id: 'form_city'  %>
       </div>
 
       <div class="field">
-        <%= address.label :町名番地 %><br />
-        <%= address.text_field :town %>
+        <%= address.label :町名番地 %><span class="uk-label uk-label-danger">必須</span><br />
+        <%= address.text_field :town, id: 'form_town'  %>
       </div>
 
       <div class="field">
@@ -74,3 +74,13 @@
 <p><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
 
 <%= link_to t('devise.shared.links.back'), :back %>
+
+<script>
+$('#form_zip').jpostal({
+  postcode : ['#form_zip'],
+  address : {
+  '#form_city'          : '%4',
+  '#form_town'          : '%5'
+            }
+  });
+</script>
