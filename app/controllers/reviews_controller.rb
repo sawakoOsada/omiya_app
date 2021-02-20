@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
      flash.now[:notice] = 'レビューが削除されました'
      format.js { render :index }
    end
- end
+  end
   private
   def review_params
     params.require(:review).permit(:souvenir_id, :comment, :rate)

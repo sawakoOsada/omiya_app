@@ -1,59 +1,58 @@
-    <h2><%= t('.sign_up') %></h2>
+  <h2><%= t('.sign_up') %></h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="field">
-      <span class="uk-label uk-label-danger">必須</span><%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <span class="uk-label uk-label-danger">必須</span><%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
 
-    <div class="field">
-      <span class="uk-label uk-label-danger">必須</span><%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-
-    <div class="field">
-      <span class="uk-label uk-label-danger">必須</span><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div><br />
-
-    <%= f.fields_for :addresses do |address| %>
-      <p>住所は後からでも登録できます</p>
-      <h2>住所</h2>
-
-      <div class="field">
-        <span class="uk-label uk-label-danger">必須</span><%= address.label :氏名 %><br />
-        <%= address.text_field :name, placeholder: '例：山田太郎' %>
-      </div>
-
-      <div class="field">
-        <span class="uk-label uk-label-danger">必須</span><%= address.label :郵便番号 %><br />
-        <%= address.text_field :zip, placeholder: '例：1111111', id: 'form_zip' %>
-        <p>入力後に住所が自動入力されます</p>
-      </div>
-
-      <div class="field">
-        <span class="uk-label uk-label-danger">必須</span><%= address.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '都道府県', id: 'form_prefecture'  %>
-      </div>
-
-      <div class="field">
-        <span class="uk-label uk-label-danger">必須</span><%= address.label :市町村 %><br />
-        <%= address.text_field :city, placeholder: '例：武蔵野市', id: 'form_city'  %>
-      </div>
-
-      <div class="field">
-        <span class="uk-label uk-label-danger">必須</span><%= address.label :町名番地 %><br />
-        <%= address.text_field :town, placeholder: '例：吉祥寺本町1-9-8', id: 'form_town'  %>
-      </div>
-
-      <div class="field">
-        <%= address.label :建物名 %><br />
-        <%= address.text_field :building, placeholder: '例：なんとかビル' %>
-      </div>
+  <div class="field">
+    <span class="uk-label uk-label-danger">必須</span><%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <span class="uk-label uk-label-danger">必須</span><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div><br />
+
+  <%= f.fields_for :addresses do |address| %>
+    <p>住所は後からでも登録できます</p>
+    <h2>住所</h2>
+
+    <div class="field">
+      <span class="uk-label uk-label-danger">必須</span><%= address.label :氏名 %><br />
+      <%= address.text_field :name, placeholder: '例：山田太郎' %>
+    </div>
+
+    <div class="field">
+      <span class="uk-label uk-label-danger">必須</span><%= address.label :郵便番号 %><br />
+      <%= address.text_field :zip, placeholder: '例：1111111', id: 'form_zip' %>
+    </div>
+
+    <div class="field">
+      <span class="uk-label uk-label-danger">必須</span><%= address.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '都道府県', id: 'form_prefecture'  %>
+    </div>
+
+    <div class="field">
+      <span class="uk-label uk-label-danger">必須</span><%= address.label :市町村 %><br />
+      <%= address.text_field :city, placeholder: '例：武蔵野市', id: 'form_city'  %>
+    </div>
+
+    <div class="field">
+      <span class="uk-label uk-label-danger">必須</span><%= address.label :町名番地 %><br />
+      <%= address.text_field :town, placeholder: '例：吉祥寺本町1-9-8', id: 'form_town'  %>
+    </div>
+
+    <div class="field">
+      <%= address.label :建物名 %><br />
+      <%= address.text_field :building, placeholder: '例：なんとかビル' %>
+    </div>
+  <% end %><br />
 
   <div class="actions">
     <%= f.submit t('.sign_up') %>

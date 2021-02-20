@@ -30,6 +30,9 @@
   position: relative;
   padding-bottom: 5rem;
 }
+.top_image{
+  width: 20rem;
+}
 .uk-text-lead{
   border-bottom: 3px dashed gray;
 }

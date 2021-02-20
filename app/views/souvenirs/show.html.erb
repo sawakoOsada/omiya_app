@@ -2,8 +2,10 @@
   <div><%= image_tag(@souvenir.image.url, :size => '300x300') %></div>
   <div>
     <h1 class="uk-heading-small"><%= @souvenir.name %></h1>
-    ￥<%= @souvenir.price %>
-    <%= @souvenir.prefecture.name %>
+    <p><%= @souvenir.prefecture.name %></p>
+    <p class="uk-text-right">￥<%= @souvenir.price %></p>
+    <p class="uk-text-right"><span class="rate_average" data-score="<%= @souvenir.reviews.average(:rate).to_f.round(1) %>"></span>
+    <%= @souvenir.reviews.count %>件の評価</p>
     <%= form_with(model: @cart_item, local: true) do |f| %>
       <%= f.label :quantity %>
       <%= f.number_field :quantity, value: 1, class: "form-control", id: 'souvenir_quantity', min: 1 %>
@@ -24,3 +26,14 @@
   <%= render partial: 'reviews/index', locals: { reviews: @reviews, souvenir: @souvenir } %>
 </div>
 <%= render partial: 'reviews/form', locals: { review: @review, souvenir: @souvenir } %>
+
+<script>
+  $('.rate_average').raty({
+    readOnly: true,
+    half: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>

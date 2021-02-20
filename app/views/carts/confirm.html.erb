@@ -1,16 +1,26 @@
-<p>購入確認</p>
+<p class="uk-text-large uk-heading-divider">購入確認</p>
 
 <% @amount = 0 %>
-<% @cart_items.each do |item| %>
-  <%= item.souvenir.name %>
-  <%= item.souvenir.price %>
-  <%= item.souvenir.prefecture.name %>
-  <%= item.quantity %>個
-  <% @add_amount = item.souvenir.price * item.quantity %>
-  <% @amount += @add_amount %>
-<% end %>
-合計：<%= @amount %>円
+<table class="uk-table uk-table-divider">
 
+  <tbody>
+
+  <% @cart_items.each do |item| %>
+    <tr>
+      <td><%= item.souvenir.name %></td>
+      <td><%= item.quantity %>個</td>
+      <td>￥<%= item.souvenir.price %></td>
+    </tr>
+    <% @add_amount = item.souvenir.price * item.quantity %>
+    <% @amount += @add_amount %>
+  <% end %>
+  </tbody>
+</table>
+<div class="uk-text-right">
+合計：<%= @amount %>円
+</div>
+
+<div class="uk-text-center">
 <%= form_with local: true, url: pay_cart_path(current_cart.id) do |form| %>
   <%= form.hidden_field :amount, value: @amount %>
   <script
@@ -19,6 +29,6 @@
     class="payjp-button"
     data-key="<%= ENV["PAYJP_PUBLIC_KEY"] %>">
   </script>
-<% end %>
-
+<% end %><br/>
 <%= link_to '戻る', :back %>
+</div>

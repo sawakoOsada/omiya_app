@@ -12,25 +12,29 @@
     <thead>
       <tr>
         <th class="uk-table-shrink"></th>
-        <th class="uk-width-small">商品名</th>
-        <th class="uk-table-shrink">販売地域</th>
-        <th class="uk-table-shrink uk-text-nowrap">価格</th>
+        <th class="uk-width-small uk-text-center">商品名</th>
+        <th class="uk-table-shrink uk-text-center">販売地域</th>
+        <th class="uk-table-shrink uk-text-center">価格</th>
+        <th class="uk-table-shrink uk-text-center">評価</th>
       </tr>
     </thead>
     <tbody>
       <% @souvenirs.each do |souvenir| %>
         <tr>
-          <td class="uk-table-link">
+          <td class="uk-table-link uk-text-center">
             <%= link_to image_tag(souvenir.image.url, :size => '100x100'), souvenir_path(souvenir.id), class: "uk-link-reset" %>
           </td>
-          <td class="uk-table-link">
+          <td class="uk-table-link uk-text-center">
             <%= link_to souvenir.name, souvenir_path(souvenir.id), class: "uk-link-reset" %>
           </td>
-          <td class="uk-table-link">
+          <td class="uk-table-link uk-text-center">
             <%= link_to souvenir.prefecture.name, souvenir_path(souvenir.id), class: "uk-link-reset" %>
           </td>
-          <td class="uk-table-link">
+          <td class="uk-table-link uk-text-center">
             <%= link_to "￥#{souvenir.price}", souvenir_path(souvenir.id), class: "uk-link-reset" %>
+          </td>
+          <td class="uk-table-link uk-text-center">
+            <span class="rate_average" data-score="<%= souvenir.reviews.average(:rate).to_f.round(1) %>"></span><span class="uk-margin-small-left"><%= souvenir.reviews.count %></span>
           </td>
         </tr>
       <% end %>
@@ -39,3 +43,14 @@
 </div>
 
 <%= paginate @souvenirs %>
+
+<script>
+  $('.rate_average').raty({
+    readOnly: true,
+    half: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
