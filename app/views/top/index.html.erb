@@ -1,5 +1,28 @@
-<div class='top_image'><%= image_tag asset_path("travel.png", alt: "") %></div>
-
-<div class='top_image'><%= image_tag asset_path("cart.png", alt: "") %></div>
-
-<div class='top_image'><%= image_tag asset_path("box.png", alt: "") %></div>
+<table class="uk-table">
+  <tbody>
+    <tr>
+      <td>
+        <div class='top_image'><%= image_tag asset_path("travel.png", alt: "") %></div>
+      </td>
+      <td>
+        <div class="top_text uk-text-center"><p class="uk-text-large uk-heading-bullet">旅行にも気軽に行けないこんな世の中･･･</p><p>ちょっとでも旅行気分を味わいたい！</p></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="top_text"><p class="uk-text-large uk-heading-bullet">おみやげ横丁で全国各地のお土産を手に入れよう</p><p>商品を選んで購入ボタンを押すだけ！</p><p class="uk-text-primary">※決済のテストカード番号は4242424242424242です※</p></div>
+      </td>
+      <td>
+        <div class='top_image'><%= image_tag asset_path("cart.png", alt: "") %></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class='top_image'><%= image_tag asset_path("box.png", alt: "") %></div>
+      </td>
+      <td>
+        <div class="top_text"><p class="uk-text-large uk-heading-bullet">おうちでも旅行気分を味わえます！</p><p class="uk-text-danger">※実際には届きません</p></div>
+      </td>
+    </tr>
+  </tbody>
+</table>
