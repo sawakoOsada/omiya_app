@@ -12,4 +12,16 @@ class User < ApplicationRecord
     attributed['city'].blank? &&
     attributed['town'].blank?
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.confirmed_at = Time.now
+      user.addresses.build(name: 'guest',
+                          zip: 1111111,
+                          prefecture_id: 1,
+                          city: 'guest_city',
+                          town: 'guest_town')
+    end
+  end
 end
