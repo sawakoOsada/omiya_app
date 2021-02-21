@@ -65,7 +65,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'omiyoko.com' }
-  config.action_mailer.delivery_method = :aws_sdk
+  # config.action_mailer.delivery_method = :aws_sdk
   # config.action_mailer.delivery_method = :ses
 
   # Ignore bad email addresses and do not raise email delivery errors.
