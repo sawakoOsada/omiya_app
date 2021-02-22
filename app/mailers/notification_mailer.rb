@@ -1,12 +1,13 @@
 class NotificationMailer < ApplicationMailer
-  def buy_confirm_to_user(user,items)
+  def buy_confirm_to_user(user, order)
     @user = user
-    @items = items
+    @address = @user.addresses.first
+    @items = order.order_items
     mail(
       subject: "ご注文の確認",
       to: @user.email
     ) do |format|
-      format.text
+      format.html
     end
   end
 end

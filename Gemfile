@@ -22,6 +22,7 @@ gem 'payjp'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'kaminari'
+gem 'cancancan'
 gem 'fog-aws'
 gem 'unicorn'
 gem 'mini_racer', platforms: :ruby

@@ -1,0 +1,28 @@
+<%= @address.name %> 様
+
+<p>ご購入ありがとうございます。</p>
+<p>注文内容</p>
+──────────────
+<% @amount = 0 %>
+<% @items.each do |item| %>
+  <div>
+    <%= item.souvenir.name %>
+    <%= item.souvenir.price %>
+    <%= item.quantity %>個
+  </div>
+  <% @add_amount = item.souvenir.price * item.quantity %>
+  <% @amount += @add_amount %>
+<% end %>
+──────────────
+<p>注文合計：￥<%= @amount %></p>
+
+<p>お届け先</p>
+──────────────
+<p><%= @address.name %>様</p>
+<%= @address.prefecture.name %>
+<%= @address.city %>
+<%= @address.town %>
+<%= @address.building if @address.building.present? %>
+──────────────
+
+<p>※サンプルアプリのため購入処理、発送処理は行われません</p>
