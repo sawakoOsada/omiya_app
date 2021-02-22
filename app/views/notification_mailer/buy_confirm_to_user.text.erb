@@ -1,14 +1,15 @@
 <%= @user.addresses.first.name %> 様
 
-ご購入ありがとうございます。
-注文内容
+<p>ご購入ありがとうございます。</p>
+<p>注文内容</p>
 <% @amount = 0 %>
 <% @items.each do |item| %>
   <%= item.souvenir.name %>
   <%= item.souvenir.price %>
-  <%= item.souvenir.prefecture.name %>
   <%= item.quantity %>個
   <% @add_amount = item.souvenir.price * item.quantity %>
   <% @amount += @add_amount %>
 <% end %>
-注文合計：￥<%= @amount %>
+<p>注文合計：￥<%= @amount %></p>
+
+<p>※サンプルアプリのため購入処理、発送処理は行われません</p>

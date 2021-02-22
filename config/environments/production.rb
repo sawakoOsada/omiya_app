@@ -64,7 +64,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "omiya_app_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'omiyoko.com' }
+  config.action_mailer.default_url_options = { host: '52.199.20.229' }
+  config.action_mailer.delivery_method = :letter_opener_web
   # config.action_mailer.delivery_method = :aws_sdk
   # config.action_mailer.delivery_method = :ses
 
