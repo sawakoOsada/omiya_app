@@ -1,0 +1,6 @@
+<h1 class="uk-heading-line uk-text-center"><span>注文履歴</span></h1>
+<ul class="uk-list uk-list-divider">
+  <% @orders.each do |order| %>
+    <li><%= link_to "注文番号#{order.id}", order_path(order.id) %><%= order.state %></li>
+  <% end %>
+</ul>

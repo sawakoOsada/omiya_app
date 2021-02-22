@@ -1,0 +1,35 @@
+<p class="uk-text-large uk-heading-bullet"><span>注文詳細</span></p>
+
+<p><%= @order.state %></p>
+
+<% @amount = 0 %>
+<table class="uk-table uk-table-divider">
+    <thead>
+        <tr>
+            <th class="uk-table-expand"></th>
+            <th class="uk-table-expand"></th>
+            <th class="uk-width-small"></th>
+            <th class="uk-width-small item_quantity"></th>
+            <th class="uk-width-small"></th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @order_items.each do |item| %>
+        <tr>
+            <td>
+              <%= image_tag(item.souvenir.image.url, :size => '100x100') %>
+            </td>
+            <td class="uk-text-middle">
+              <strong class="uk-text-bold "><%= link_to item.souvenir.name, souvenir_path(item.souvenir.id) %></strong></td>
+            <td class="uk-text-middle">
+              <strong class="uk-text-bold">￥<%= item.souvenir.price %></strong></td>
+            <td class="uk-text-middle">
+              <%= item.quantity %>個
+            </td>
+        </tr>
+        <% @add_amount = item.souvenir.price * item.quantity %>
+        <% @amount += @add_amount %>
+        <% end %>
+    </tbody>
+</table>
+<p class="uk-text-right">合計：<%= @amount %>円</p>
