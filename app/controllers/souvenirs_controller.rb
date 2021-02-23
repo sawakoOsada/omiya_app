@@ -10,6 +10,7 @@ class SouvenirsController < ApplicationController
     @reviews = @souvenir.reviews
     @review = @souvenir.reviews.build
     item_in_cart
+    user_buy_this?
   end
 
   private
@@ -18,6 +19,18 @@ class SouvenirsController < ApplicationController
       @cart_item = current_cart.cart_items.find_by(souvenir_id: params[:id])
     else
       @cart_item = current_cart.cart_items.new
+    end
+  end
+
+  def user_buy_this?
+    @review_ok = false
+    current_user.orders.each do |order|
+      order.order_items.each do |item|
+        if item.souvenir.id == @souvenir.id
+          @review_ok = true
+          break
+        end
+      end
     end
   end
 end

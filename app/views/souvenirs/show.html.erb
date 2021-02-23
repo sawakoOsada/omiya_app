@@ -25,7 +25,9 @@
 <div id="reviews_area">
   <%= render partial: 'reviews/index', locals: { reviews: @reviews, souvenir: @souvenir } %>
 </div>
-<%= render partial: 'reviews/form', locals: { review: @review, souvenir: @souvenir } %>
+<% if @review_ok %>
+  <%= render partial: 'reviews/form', locals: { review: @review, souvenir: @souvenir } %>
+<% end %>
 
 <script>
   $('.rate_average').raty({

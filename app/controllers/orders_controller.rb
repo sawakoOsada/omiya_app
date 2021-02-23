@@ -10,7 +10,11 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order_items = @order.order_items
+    if current_user = @order.user
+      @order_items = @order.order_items
+    else
+      redirect_to root_path, notice:'権限がありません'
+    end
   end
 
   def destroy
