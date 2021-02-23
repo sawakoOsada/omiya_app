@@ -27,7 +27,7 @@ end
   resources :orders, only: [:create, :update, :show, :index]
   resources :order_items, only: [:create, :update, :destroy]
 
-  # if Rails.env.development?
+  if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  # end
+  end
 end

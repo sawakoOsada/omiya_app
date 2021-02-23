@@ -1,4 +1,3 @@
-require 'active_support'
 class CartsController < ApplicationController
   before_action :authenticate_user!, only: [:pay]
 
@@ -19,14 +18,14 @@ class CartsController < ApplicationController
   end
 
   def pay
-    @cart_items = current_cart.cart_items
-    order_create(@cart_items)
     # Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     # Payjp::Charge.create(
     #   :amount => params[:amount],
     #   :card => params['payjp-token'],
     #   :currency => 'jpy'
     # )
+    @cart_items = current_cart.cart_items
+    order_create(@cart_items)
     NotificationMailer.buy_confirm_to_user(current_user, @order).deliver
     @cart_items.delete_all
   end

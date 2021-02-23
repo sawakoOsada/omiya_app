@@ -16,9 +16,6 @@
 </div>
 
 <p class="uk-text-lead">レビュー</p>
-<% if @souvenir.reviews.first.id.nil? %>
-  <p>まだレビューがありません</p>
-<% end %>
 <div id="error_explanation">
   <%= render partial: 'reviews/error', locals: { review: @review } %>
 </div>

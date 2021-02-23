@@ -1,3 +1,6 @@
+<% if @souvenir.reviews.first.id.nil? %>
+  <p>まだレビューがありません</p>
+<% end %>
 <ul>
   <% reviews.each do |review| %>
     <% if review.id.present? %>
