@@ -25,4 +25,11 @@ class User < ApplicationRecord
                           town: 'ゲスト町1-1-1')
     end
   end
+  def self.seller
+    find_or_create_by!(email: 'seller@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.seller = true
+      user.confirmed_at = Time.now
+    end
+  end
 end

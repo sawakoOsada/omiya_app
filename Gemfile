@@ -26,7 +26,7 @@ gem 'cancancan'
 gem 'fog-aws'
 gem 'unicorn'
 gem 'mini_racer', platforms: :ruby
-# gem 'aws-sdk-rails'
+gem 'rails_admin', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

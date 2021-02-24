@@ -49,3 +49,10 @@ input::placeholder {
   font-size: 0.5rem;
   margin-right: 0.5rem;
 }
+.link_text{
+  color: white;
+}
+.link_text:hover{
+  color: white;
+  text-decoration: none;
+}

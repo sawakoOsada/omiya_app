@@ -7,10 +7,12 @@ ja:
       cart: カート
       cart_item: カート内商品
       review: レビュー
+      order: 注文
+      order_item: 注文商品
     attributes:
       souvenir:
         name: タイトル
-        prefecture_id: 都道府県
+        prefecture_id: 販売地域
         image: 内容
         price: 価格
       addresses:
@@ -24,4 +26,6 @@ ja:
         rate: 評価
         comment: コメント
       cart_item:
+        quantity: 数量
+      order_item:
         quantity: 数量

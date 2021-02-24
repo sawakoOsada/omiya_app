@@ -24,7 +24,8 @@
   </div>
 <% end %>
 <br />
-<%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
+<button class="uk-button uk-button-primary uk-button-small"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'link_text' %></button>
+<button class="uk-button uk-button-secondary uk-button-small"><%= link_to '販売者ログイン', users_seller_sign_in_path, method: :post, class: 'link_text' %></button>
 
 <%= render "devise/shared/links" %>
 </div>

@@ -24,11 +24,13 @@ class SouvenirsController < ApplicationController
 
   def user_buy_this?
     @review_ok = false
-    current_user.orders.each do |order|
-      order.order_items.each do |item|
-        if item.souvenir.id == @souvenir.id
-          @review_ok = true
-          break
+    if current_user.present?
+      current_user.orders.each do |order|
+        order.order_items.each do |item|
+          if item.souvenir.id == @souvenir.id
+            @review_ok = true
+            break
+          end
         end
       end
     end

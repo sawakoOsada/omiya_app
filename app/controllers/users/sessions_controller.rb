@@ -9,6 +9,12 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
+  def new_seller
+    user = User.seller
+    sign_in user
+    redirect_to rails_admin_path, notice: '販売者としてログインしました。'
+  end
+
   # GET /resource/sign_in
   # def new
   #   super

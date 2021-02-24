@@ -1,12 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :index]
-  before_action :set_order, only: [:update, :show, :destroy]
+  before_action :set_order, only: [:show, :destroy]
 
   def index
     @orders = current_user.orders.all
-  end
-
-  def update
   end
 
   def show
@@ -19,6 +16,7 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
+    redirect_to orders_path, notice:'注文をキャンセルしました'
   end
   private
   def order_params

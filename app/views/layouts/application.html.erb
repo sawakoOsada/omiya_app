@@ -26,12 +26,16 @@
         </div>
         <div class="uk-navbar-right">
           <ul class="uk-navbar-nav">
-            <% if user_signed_in? %>
-              <li><%= link_to 'ユーザー情報変更', edit_user_registration_path %></li>
+            <% if current_user.try(:seller?) %>
+              <li><%= link_to '管理画面', rails_admin_path %></li>
             <% else %>
-              <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to 'ユーザー情報変更', edit_user_registration_path %></li>
+              <% else %>
+                <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <% end %>
+                <li><%= link_to 'カート', cart_path(current_cart) %></li>
             <% end %>
-              <li><%= link_to 'カート', cart_path(current_cart) %></li>
           </ul>
         </div>
       </nav>
@@ -44,15 +48,19 @@
             <li class="uk-nav-header">商品を探す</li>
             <li><%= link_to '商品一覧', souvenirs_path %></li>
             <li class="uk-nav-header">ユーザー</li>
-            <% if user_signed_in? %>
+            <% if current_user.try(:seller?) %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <% elsif user_signed_in? %>
               <li><%= link_to '注文履歴', orders_path %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to '新規登録', new_user_registration_path %></li>
               <li><%= link_to 'ログイン', new_user_session_path %></li>
             <% end %>
-            <li class="uk-nav-divider"></li>
-            <li><%= link_to 'カート', cart_path(current_cart) %></li>
+            <% unless current_user.try(:seller?) %>
+              <li class="uk-nav-divider"></li>
+              <li><%= link_to 'カート', cart_path(current_cart) %></li>
+            <% end %>
           </ul>
         </div>
       </div>
