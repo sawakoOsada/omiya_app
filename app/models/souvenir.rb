@@ -2,6 +2,8 @@ class Souvenir < ApplicationRecord
   include JpPrefecture
   jp_prefecture :prefecture_id
 
+  validates :image, presence: true
+  validates :prefecture_id, presence: true
   validates :name, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
 
