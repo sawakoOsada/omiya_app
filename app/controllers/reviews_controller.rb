@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
   end
   private
   def review_params
-    params.require(:review).permit(:souvenir_id, :comment, :rate)
+    params.require(:review).permit(:souvenir_id, :comment, :rate, :user_id)
   end
 
   def set_souvenir
