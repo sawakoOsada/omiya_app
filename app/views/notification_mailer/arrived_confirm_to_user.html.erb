@@ -1,0 +1,31 @@
+<%= @address.name %> 様
+
+<p>ご注文いただいた商品をお届けしました。よろしければレビューをお願いします。</p>
+<p>注文内容</p>
+──────────────
+<% @amount = 0 %>
+<% @items.each do |item| %>
+  <div>
+    <%= item.souvenir.name %>
+    <%= item.souvenir.price %>
+    <%= item.quantity %>個
+    <%= link_to '商品のレビューをする', souvenir_url(item.souvenir.id) %>
+  </div>
+  <% @add_amount = item.souvenir.price * item.quantity %>
+  <% @amount += @add_amount %>
+<% end %>
+──────────────
+<p>注文合計：￥<%= @amount %></p>
+
+<p>お届け先</p>
+──────────────
+<div>
+  <p><%= @address.name %>様</p>
+  <%= @address.prefecture.name %>
+  <%= @address.city %>
+  <%= @address.town %>
+  <%= @address.building if @address.building.present? %>
+</div>
+──────────────
+<p><%= link_to '注文詳細', order_url(@order.id) %></p>
+<p>※サンプルアプリのため購入処理、発送処理は行われません</p>

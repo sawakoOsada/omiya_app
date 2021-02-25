@@ -20,8 +20,11 @@ class OrdersController < ApplicationController
 
   def update
     params[:order][:state] = params[:order][:state].to_i
-    if Order.find(params[:id]).update(order_params)
-      redirect_to orders_path, notice:'編集しました'
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      NotificationMailer.sent_confirm_to_user(@order).deliver if params[:order][:state] == 1
+      NotificationMailer.arrived_confirm_to_user(@order).deliver if params[:order][:state] == 2
+      redirect_to orders_path, notice:'変更しました'
     else
       render :edit
     end

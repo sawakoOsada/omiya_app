@@ -1,24 +1,27 @@
 <% if current_user.seller? %>
   <h1 class="uk-heading-line uk-text-center"><span>注文一覧</span></h1>
+  <p>発送状況を変更すると登録者に通知が届きます</p>
 <% else %>
   <h1 class="uk-heading-line uk-text-center"><span>注文履歴</span></h1>
 <% end %>
-<p>発送状況を変更すると登録者に通知が届きます</p>
+
 <ul class="uk-list uk-list-divider">
   <% @orders.each do |order| %>
     <li>USER <%= order.user.id %>：<%= link_to "注文番号#{order.id}", order_path(order.id) %>
-      <% if order.state == '注文済み' %>
-        <%= form_with(model: order, local: true, class: 'order_state') do |f| %>
-          <%= f.select :state, [['発送中', 1], ['配達完了', 2]], include_blank: order.state %>
-          <%= f.submit '変更', data: { confirm: '本当に変更しますか？' } %>
-        <% end %>
-        <% elsif order.state == '発送中' %>
+      <% if current_user.seller? %>
+        <% if order.state == '注文済み' %>
           <%= form_with(model: order, local: true, class: 'order_state') do |f| %>
-          <%= f.select :state, [['配達完了', 2]], include_blank: order.state %>
-          <%= f.submit '変更', data: { confirm: '本当に変更しますか？' } %>
+            <%= f.select :state, [['発送中', 1], ['配達完了', 2]], include_blank: order.state %>
+            <%= f.submit '変更', data: { confirm: '本当に変更しますか？' } %>
+          <% end %>
+          <% elsif order.state == '発送中' %>
+            <%= form_with(model: order, local: true, class: 'order_state') do |f| %>
+            <%= f.select :state, [['配達完了', 2]], include_blank: order.state %>
+            <%= f.submit '変更', data: { confirm: '本当に変更しますか？' } %>
+          <% end %>
+        <% else %>
+          <%= order.state %>
         <% end %>
-      <% else %>
-        <%= order.state %>
       <% end %>
     </li>
   <% end %>
