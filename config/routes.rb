@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/seller', as: 'rails_admin'
   root 'top#index'
 
   devise_for :users, controllers: {
@@ -11,7 +10,7 @@ Rails.application.routes.draw do
   post 'users/seller_sign_in', to: 'users/sessions#new_seller'
 end
 
-  resources :souvenirs, only: [:index, :show] do
+  resources :souvenirs, only: [:new, :create, :index, :show] do
     resources :reviews
   end
 

@@ -4,8 +4,7 @@ class Ability
 
   def initialize(user)
     if user.try(:seller?)
-      can :access, :rails_admin
-      can  :manage, :all
+      can :create, Souvenir
       cannot [:pay], Souvenir
     elsif user.present?
       can :pay, Souvenir

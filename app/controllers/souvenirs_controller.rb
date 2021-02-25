@@ -1,4 +1,18 @@
 class SouvenirsController < ApplicationController
+
+  def new
+    @souvenir = Souvenir.new
+  end
+
+  def create
+    @souvenir = Souvenir.new(souvenir_params)
+    if @souvenir.save
+      redirect_to souvenirs_path, notice:'作成しました'
+    else
+      render :new
+    end
+  end
+
   def index
     @q = Souvenir.ransack(params[:q])
     @souvenirs = @q.result(distinct: true)
@@ -14,6 +28,10 @@ class SouvenirsController < ApplicationController
   end
 
   private
+  def souvenir_params
+    params.require(:souvenir).permit(:name, :image, :image_cache, :price, :prefecture_id)
+  end
+
   def item_in_cart
     if current_cart.cart_items.find_by(souvenir_id: params[:id])
       @cart_item = current_cart.cart_items.find_by(souvenir_id: params[:id])

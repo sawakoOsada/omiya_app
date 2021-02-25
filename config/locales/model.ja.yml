@@ -11,9 +11,9 @@ ja:
       order_item: 注文商品
     attributes:
       souvenir:
-        name: タイトル
+        name: 商品名
         prefecture_id: 販売地域
-        image: 内容
+        image: 画像
         price: 価格
       addresses:
         name: 氏名

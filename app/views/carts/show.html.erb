@@ -48,6 +48,8 @@
     <p>商品を探しに行きましょう！</p>
   <% elsif current_user.nil? %>
     <p>商品購入には会員登録が必要です</p>
+    <p>住所登録されたゲストでログインが可能です</p>
+    <button class="uk-button uk-button-primary uk-button-small"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'link_text' %></button>
   <% elsif current_user.addresses.blank? %>
     <p>商品購入には住所登録が必要です</p>
   <% else %>

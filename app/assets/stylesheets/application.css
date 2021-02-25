@@ -56,3 +56,6 @@ input::placeholder {
   color: white;
   text-decoration: none;
 }
+.order_state{
+  display: inline;
+}

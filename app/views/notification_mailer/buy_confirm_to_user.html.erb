@@ -18,11 +18,13 @@
 
 <p>お届け先</p>
 ──────────────
-<p><%= @address.name %>様</p>
-<%= @address.prefecture.name %>
-<%= @address.city %>
-<%= @address.town %>
-<%= @address.building if @address.building.present? %>
+<div>
+  <p><%= @address.name %>様</p>
+  <%= @address.prefecture.name %>
+  <%= @address.city %>
+  <%= @address.town %>
+  <%= @address.building if @address.building.present? %>
+</div>
 ──────────────
 <p><%= link_to '注文詳細', order_url(@order.id) %></p>
 <p>※サンプルアプリのため購入処理、発送処理は行われません</p>

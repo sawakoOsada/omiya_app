@@ -6,11 +6,13 @@
     <p class="uk-text-right">￥<%= @souvenir.price %></p>
     <p class="uk-text-right"><span class="rate_average" data-score="<%= @souvenir.reviews.average(:rate).to_f.round(1) %>"></span>
     <%= @souvenir.reviews.count %>件の評価</p>
-    <%= form_with(model: @cart_item, local: true) do |f| %>
-      <%= f.label :quantity %>
-      <%= f.number_field :quantity, value: 1, class: "form-control", id: 'souvenir_quantity', min: 1 %>
-      <%= f.hidden_field :souvenir_id, value: @souvenir.id %>
-      <%= f.submit 'カートに入れる' %>
+    <% unless current_user.try(:seller?) %>
+      <%= form_with(model: @cart_item, local: true) do |f| %>
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity, value: 1, class: "form-control", id: 'souvenir_quantity', min: 1 %>
+        <%= f.hidden_field :souvenir_id, value: @souvenir.id %>
+        <%= f.submit 'カートに入れる' %>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -24,6 +26,8 @@
 </div>
 <% if @review_ok %>
   <%= render partial: 'reviews/form', locals: { review: @review, souvenir: @souvenir } %>
+<% else %>
+  <p>購入者のみレビューできます</p>
 <% end %>
 
 <script>

@@ -3,7 +3,11 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :destroy]
 
   def index
-    @orders = current_user.orders.all
+    if current_user.seller?
+      @orders = Order.all
+    else
+      @orders = current_user.orders.all
+    end
   end
 
   def show
@@ -14,13 +18,22 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    params[:order][:state] = params[:order][:state].to_i
+    if Order.find(params[:id]).update(order_params)
+      redirect_to orders_path, notice:'編集しました'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @order.destroy
     redirect_to orders_path, notice:'注文をキャンセルしました'
   end
   private
   def order_params
-    params.require(:order).permit(:quantity, :souvenir_id)
+    params.require(:order).permit(:state, :id)
   end
 
   def set_order

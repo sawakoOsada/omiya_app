@@ -1,0 +1,28 @@
+<legend class="uk-legend">商品登録</legend>
+
+<%= form_with(model: @souvenir, local: true) do |f| %>
+
+  <div class="uk-margin">
+    <span class="uk-label uk-label-danger">必須</span>
+    <%= f.file_field :image %>
+  </div>
+
+  <%= f.hidden_field :image_cache %>
+
+  <div class="uk-margin">
+    <span class="uk-label uk-label-danger">必須</span>
+    <%= f.text_field :name, class: 'uk-input uk-form-width-medium', type: 'text', placeholder: '商品名' %>
+  </div>
+
+  <div class="uk-margin">
+    <span class="uk-label uk-label-danger">必須</span>
+    <%= f.number_field :price, class: 'uk-input uk-form-width-small', type: 'text', placeholder: '価格' %>
+  </div>
+
+  <div class="uk-margin">
+    <span class="uk-label uk-label-danger">必須</span><%= f.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '販売地域', class: 'uk-select' %>
+  </div>
+
+  <%= f.submit '確認' %>
+
+<% end %>
