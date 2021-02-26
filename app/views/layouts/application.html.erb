@@ -29,13 +29,12 @@
             <% if current_user.try(:seller?) %>
               <li><%= link_to '商品登録', new_souvenir_path %></li>
               <li><%= link_to '注文一覧', orders_path %></li>
+            <% elsif user_signed_in? %>
+              <li><%= link_to '注文履歴', orders_path %></li>
+              <li><%= link_to 'カート', cart_path(current_cart) %></li>
             <% else %>
-              <% if user_signed_in? %>
-                <li><%= link_to '注文履歴', orders_path %></li>
-              <% else %>
-                <li><%= link_to 'ログイン', new_user_session_path %></li>
-              <% end %>
-                <li><%= link_to 'カート', cart_path(current_cart) %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <li><%= link_to 'カート', cart_path(current_cart) %></li>
             <% end %>
           </ul>
         </div>
@@ -48,8 +47,12 @@
             <li><%= link_to 'トップ', root_path %></li>
             <li class="uk-nav-header">商品を探す</li>
             <li><%= link_to '商品一覧', souvenirs_path %></li>
+            <% if current_user.try(:seller?) %>
+              <li><%= link_to '商品登録', new_souvenir_path %></li>
+            <% end %>
             <li class="uk-nav-header">ユーザー</li>
             <% if current_user.try(:seller?) %>
+              <li><%= link_to '注文一覧', orders_path %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% elsif user_signed_in? %>
               <li><%= link_to '登録情報変更', edit_user_registration_path %></li>

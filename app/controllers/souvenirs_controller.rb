@@ -9,6 +9,7 @@ class SouvenirsController < ApplicationController
     if @souvenir.save
       redirect_to souvenirs_path, notice:'作成しました'
     else
+      flash.now[:notice] = 'データに誤りがあります'
       render :new
     end
   end

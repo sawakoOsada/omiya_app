@@ -59,3 +59,11 @@ input::placeholder {
 .order_state{
   display: inline;
 }
+.review_box{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: rgb(150, 120, 120);
+    border: solid 3px rgb(160, 150, 150);
+    border-radius: 10px;
+}

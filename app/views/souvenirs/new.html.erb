@@ -23,6 +23,6 @@
     <span class="uk-label uk-label-danger">必須</span><%= f.collection_select :prefecture_id, JpPrefecture::Prefecture.all, :code, :name, :include_blank => '販売地域', class: 'uk-select' %>
   </div>
 
-  <%= f.submit '確認' %>
+  <%= f.submit '登録', data: { confirm: '本当に登録しますか？' } %>
 
 <% end %>

@@ -4,17 +4,19 @@
 <ul>
   <% reviews.each do |review| %>
     <% if review.id.present? %>
-      <li class="review_list">
-        <div class="review_comment" id ="this_review_<%= review.id %>">
-          <p class="review_rate" data-score="<%= review.rate %>"></p>
-          <p><%= review.comment %></p>
-          <% if current_user.present? && current_user == review.user %>
-            <%= link_to "編集", edit_souvenir_review_path(souvenir, review), remote: true %>
-            <%= link_to "削除", souvenir_review_path(review.souvenir_id, review.id), method: :delete, remote: true,
-                                          data: { confirm: "本当に削除しますか?"} %>
-          <% end %>
-        </div>
-      </li>
+      <div class="review_box">
+        <li class="review_list">
+          <div class="review_comment" id ="this_review_<%= review.id %>"><%= "USER #{review.user.id}様" %>
+            <p class="review_rate" data-score="<%= review.rate %>"></p>
+            <p><%= review.comment %></p>
+            <% if current_user.present? && current_user == review.user %>
+              <%= link_to "編集", edit_souvenir_review_path(souvenir, review), remote: true %>
+              <%= link_to "削除", souvenir_review_path(review.souvenir_id, review.id), method: :delete, remote: true,
+                                            data: { confirm: "本当に削除しますか?"} %>
+            <% end %>
+          </div>
+        </li>
+      </div>
     <% end %>
   <% end %>
 </ul>
