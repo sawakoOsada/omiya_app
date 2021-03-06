@@ -2,12 +2,9 @@ class ReviewsController < ApplicationController
   before_action :set_souvenir, only: [:create, :edit, :update]
   def create
     @review = @souvenir.reviews.build(review_params)
+    @review.save
     respond_to do |format|
-      if @review.save
-        format.js { render :index }
-      else
-        format.js { render :index }
-      end
+      format.js { render :index }
     end
   end
 
